@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NIGRA Academy | 久留米・うきはの内申点・特色化選抜対策</title>
+    <link rel="stylesheet" href="assets/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700;900&family=Outfit:wght@400;700;900&display=swap"
+        rel="stylesheet">
+    <style>
+        .academy-hero {
+            padding-top: 180px;
+            padding-bottom: 100px;
+            text-align: center;
+        }
+
+        .accent-box {
+            background: rgba(255, 87, 34, 0.1);
+            border-left: 4px solid var(--accent-orange);
+            padding: 30px;
+            margin: 40px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        /* Pain Points */
+        .pain-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 60px 0;
+        }
+
+        .pain-card {
+            background: #111;
+            padding: 40px;
+            border-radius: 12px;
+            border: 1px solid #222;
+        }
+
+        .pain-card h4 {
+            color: #888;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .pain-card p {
+            font-weight: 700;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        /* Comparison Table */
+        .comp-table-wrap {
+            overflow-x: auto;
+            margin: 80px 0;
+        }
+
+        .comp-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 600px;
+        }
+
+        .comp-table th,
+        .comp-table td {
+            padding: 25px;
+            border-bottom: 1px solid #222;
+            text-align: center;
+        }
+
+        .comp-table th {
+            background: #0a0a0a;
+            color: #888;
+            font-size: 0.8rem;
+        }
+
+        .comp-table .feature-col {
+            text-align: left;
+            font-weight: 700;
+            background: #0a0a0a;
+            width: 220px;
+        }
+
+        .comp-table .highlight {
+            background: rgba(255, 87, 34, 0.05);
+            color: var(--accent-orange);
+            font-weight: 900;
+        }
+
+        .comp-table .bad {
+            color: #666;
+        }
+
+        /* Testimonials */
+        .voice-section {
+            background: #0a0a0a;
+            padding: 100px 0;
+        }
+
+        .voice-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .voice-card {
+            background: #111;
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid #222;
+            position: relative;
+        }
+
+        .voice-card::before {
+            content: "“";
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            font-size: 5rem;
+            color: var(--accent-orange);
+            opacity: 0.2;
+        }
+
+        .voice-text {
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .voice-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .voice-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--accent-orange);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+        }
+
+        /* Reason section cards */
+        .reason-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .reason-item {
+            background: #0d0d0d;
+            border: 1px solid #222;
+            padding: 40px;
+            border-radius: 15px;
+            transition: 0.3s;
+        }
+
+        .reason-item:hover {
+            border-color: var(--accent-orange);
+            background: #111;
+        }
+
+        .reason-item h3 {
+            color: var(--accent-orange);
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+            font-weight: 900;
+        }
+
+        .reason-item p {
+            color: #aaa;
+            line-height: 1.8;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="loader">
+        <div class="loader-text"></div>
+    </div>
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="logo"><img src="assets/images/logo-nigra.png" alt="NIGRA" class="logo-img"></a>
+            <nav class="nav">
+                <a href="index.html" class="nav-link">HOME</a>
+                <a href="academy.html" class="nav-link active">Academy</a>
+                <a href="sportslink.html" class="nav-link">SportsLink</a>
+                <a href="company.html" class="nav-link">Company</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Story: Pain Sympathy -->
+        <section class="academy-hero">
+            <div class="container">
+                <span class="section-label reveal">FOR JUNIOR HIGH STUDENTS</span>
+                <h1 class="large-title reveal" style="font-size: clamp(2.2rem, 6vw, 4.5rem);">久留米・うきはで、<br><span
+                        class="accent-glow">「勝てる内申点」を。</span></h1>
+                <p class="reveal" style="margin-top:30px; color:#888; font-size:1.2rem;">
+                    集団授業で取り残されていませんか？<br>現役医学部生・九大生が、あなたの自宅で直接指導。</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <h2 class="reveal" style="text-align:center; font-size:2rem; margin-bottom:60px;">こんな「悩み」を抱えていませんか？</h2>
+                <div class="pain-grid">
+                    <div class="pain-card reveal">
+                        <h4>集団授業の限界</h4>
+                        <p>「大手塾に通っているのに、質問ができず取り残されている…」</p>
+                    </div>
+                    <div class="pain-card reveal">
+                        <h4>内申点の壁</h4>
+                        <p>「テストの点はそこそこなのに、内申点の上げ方がわからず特色化選抜が不安…」</p>
+                    </div>
+                    <div class="pain-card reveal">
+                        <h4>保護者の負担</h4>
+                        <p>「夜遅くの塾への送迎が体力的・時間的に限界。子供の学習時間も削られている…」</p>
+                    </div>
+                </div>
+                <!-- Advantage: Home Visit -->
+                <div class="accent-box reveal">
+                    <p style="font-weight:700; line-height: 1.8;">
+                        久留米・うきはエリアの広範囲に対応。塾への送り迎えの時間はもう不要です。ご自宅にお伺いするスタイルなので、忙しい保護者様の負担をゼロに、お子様の学習時間を最大化します。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Story: Solutions & Strengths -->
+        <section class="section" style="background: #050505;">
+            <div class="container">
+                <h2 class="large-title reveal" style="font-size:3rem; margin-bottom:20px;">なぜ、にぐらが選ばれるのか？</h2>
+                <p class="reveal" style="color: #666; margin-bottom: 50px;">地域密着と最高峰の講師陣が、お子様の可能性を解放します。</p>
+                <div class="reason-grid">
+                    <div class="reason-item reveal">
+                        <h3>地域密着。中学校別対策</h3>
+                        <p>地元中学校のテスト傾向や、福岡県特有の「特色化選抜」を熟知。地に足のついた内申点対策を行います。</p>
+                    </div>
+                    <div class="reason-item reveal">
+                        <h3>地域最高峰の講師陣</h3>
+                        <p>久留米大学医学部や九州大学など、難関入試を突破した現役生。単に勉強を教えるだけでなく、彼らが実践してきた「勝てる勉強法」を直接伝授します。</p>
+                    </div>
+                    <div class="reason-item reveal">
+                        <h3>全9教科。戦略的指導</h3>
+                        <p>主要5科目はもちろん、内申点を左右する「副教科」までカバー。提出物の質から変えることで、内申5を目指します。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Story: Comparison -->
+        <section class="section">
+            <div class="container">
+                <h2 class="reveal" style="text-align:center; margin-bottom:60px; font-size: 2.5rem;">徹底比較</h2>
+                <div class="comp-table-wrap reveal">
+                    <table class="comp-table">
+                        <thead>
+                            <tr>
+                                <th class="feature-col">比較項目</th>
+                                <th>大手集団塾</th>
+                                <th class="highlight">にぐらアカデミー</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="feature-col">指導形式</td>
+                                <td class="bad">大人数・一方通行</td>
+                                <td class="highlight">完全1対1・逆算型個別戦略</td>
+                            </tr>
+                            <tr>
+                                <td class="feature-col">通塾・送迎</td>
+                                <td class="bad">夜遅くの送迎が必須 / 負担大</td>
+                                <td class="highlight">自宅訪問 / 送迎不要・スキマ活用</td>
+                            </tr>
+                            <tr>
+                                <td class="feature-col">講師の質</td>
+                                <td class="bad">学生バイト・交代制が多い</td>
+                                <td class="highlight">現役医学部生・九大生の精鋭陣</td>
+                            </tr>
+                            <tr>
+                                <td class="feature-col">副教科対策</td>
+                                <td class="bad">なし（5教科のみ）</td>
+                                <td class="highlight">全9教科対応・提出物管理まで</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Story: Voice (The 2 Specified Cases) -->
+        <section class="voice-section">
+            <div class="container">
+                <h2 class="reveal" style="text-align:center; margin-bottom:60px; font-size: 2.5rem;">入会者の喜びの声</h2>
+                <div class="voice-grid">
+                    <div class="voice-card reveal">
+                        <p class="voice-text">「大手塾から転塾しました。副教科の対策まで細かく見てもらったおかげで内申点が4上がり、念願の明善高校合格が見えました！」</p>
+                        <div class="voice-info">
+                            <div class="voice-avatar">B</div>
+                            <div><strong>中学3年生・男子</strong><br><small>明善高校合格</small></div>
+                        </div>
+                    </div>
+                    <div class="voice-card reveal">
+                        <p class="voice-text">「ワークの進め方から指導してもらえるので、家での学習習慣が劇的に変わりました。今は戦略を持ってテストに挑めています。」</p>
+                        <div class="voice-info">
+                            <div class="voice-avatar">G</div>
+                            <div><strong>中学2年生・女子</strong><br><small>学習習慣・戦略確立</small></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cta-box reveal" style="margin-top:80px;">
+                    <a href="contact.html" class="btn-primary-glow"
+                        style="padding:25px 60px; font-size:1.4rem;">無料の戦略立案を予約する</a>
+                    <p style="margin-top:20px; color:#666;">※現在、久留米・うきはエリアにて限定受付中</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div style="display: flex; justify-content: space-between; align-items: start;">
+                <div>
+                    <img src="assets/images/logo-nigra.png" alt="NIGRA" style="height: 35px; margin-bottom: 20px;">
+                    <p style="color:#666; font-size:0.9rem;">福岡県久留米市東町25-25<br>代表取締役 山本 陽平</p>
+                </div>
+                <p style="color: #444; font-size: 0.8rem;">&copy; 2026 NIGRA Inc. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
+    <script src="assets/script.js"></script>
+</body>
+
+</html>

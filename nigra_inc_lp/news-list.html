@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>お知らせ一覧 | NIGRA Inc.</title>
+    <link rel="stylesheet" href="assets/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700;900&family=Outfit:wght@400;700;900&display=swap"
+        rel="stylesheet">
+    <style>
+        .news-list-container {
+            padding-top: 180px;
+            padding-bottom: 120px;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            color: var(--accent-orange);
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin-bottom: 40px;
+            font-weight: 700;
+            transition: 0.3s;
+        }
+
+        .back-link:hover {
+            transform: translateX(-5px);
+            opacity: 0.8;
+        }
+
+        .news-item-link {
+            display: flex;
+            align-items: center;
+            padding: 35px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            text-decoration: none;
+            color: #fff;
+            transition: 0.3s;
+        }
+
+        .news-item-link:hover {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .news-item-link:hover .news-title {
+            color: var(--accent-orange);
+            text-decoration: underline;
+            text-underline-offset: 8px;
+        }
+
+        .news-date {
+            width: 140px;
+            color: var(--accent-orange);
+            font-family: 'Outfit';
+            font-weight: 700;
+        }
+
+        .news-title {
+            flex: 1;
+            font-weight: 400;
+            font-size: 1.1rem;
+        }
+
+        .news-arrow {
+            opacity: 0;
+            transform: translateX(-10px);
+            transition: 0.3s;
+            color: var(--accent-orange);
+            font-weight: 900;
+        }
+
+        .news-item-link:hover .news-arrow {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="loader">
+        <div class="loader-text"></div>
+    </div>
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="assets/images/logo-nigra.png" alt="NIGRA" class="logo-img">
+            </a>
+            <nav class="nav">
+                <a href="index.html" class="nav-link">HOME</a>
+                <a href="academy.html" class="nav-link">Academy</a>
+                <a href="sportslink.html" class="nav-link">SportsLink</a>
+                <a href="company.html" class="nav-link">Company</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <div class="container news-list-container">
+            <a href="index.html" class="back-link">← ホームに戻る</a>
+            <h1 class="large-title reveal">NEWS LIST</h1>
+            <div id="full-news-list">
+                <!-- Data will be loaded via JS -->
+            </div>
+        </div>
+    </main>
+    <footer class="footer">
+        <div class="container">
+            <div>
+                <img src="assets/images/logo-nigra.png" alt="NIGRA" style="height: 35px; margin-bottom: 20px;">
+                <p style="color: #666; font-size: 0.9rem;">福岡県久留米市東町25-25<br>代表取締役 山本 陽平</p>
+            </div>
+            <div style="text-align: right;">
+                <p style="color: #444; font-size: 0.8rem;">&copy; 2026 NIGRA Inc. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
+    <script src="assets/script.js"></script>
+    <script>
+        const STORAGE_KEY = 'nigra_news_data';
+        function loadFullNews() {
+            const data = localStorage.getItem(STORAGE_KEY);
+            if (!data) return;
+            const news = JSON.parse(data);
+            const container = document.getElementById('full-news-list');
+            container.innerHTML = '';
+            // Sort by date dsc
+            news.sort((a, b) => new Date(b.date.replace(/\./g, '/')) - new Date(a.date.replace(/\./g, '/')));
+            news.forEach(item => {
+                const a = document.createElement('a');
+                a.href = `news-detail.html?id=${item.id}`;
+                a.className = 'news-item-link reveal';
+                a.innerHTML = `
+                    <span class="news-date">${item.date}</span>
+                    <span class="news-title">${item.title}</span>
+                    <span class="news-arrow">→</span>
+                `;
+                container.appendChild(a);
+            });
+        }
+        loadFullNews();
+    </script>
+</body>
+
+</html>
