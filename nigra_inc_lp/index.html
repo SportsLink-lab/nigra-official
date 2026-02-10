@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="ja">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,241 +7,77 @@
     <link rel="stylesheet" href="assets/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700;900&family=Outfit:wght@400;700;900&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700;900&family=Outfit:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
-        .split-axis-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            margin-top: 50px;
-        }
+        /* 反映確認用：文字を赤くする */
+        .test-red { color: red !important; }
+        
+        .split-axis-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 50px; }
+        .axis-card { height: 600px; border-radius: 12px; position: relative; overflow: hidden; text-decoration: none; display: flex; flex-direction: column; justify-content: flex-end; padding: 60px 40px; border: 1px solid rgba(255,255,255,0.08); transition: 0.6s cubic-bezier(0.2, 1, 0.3, 1); }
+        .axis-bg { position: absolute; top:0; left:0; width:100%; height:100%; z-index: 1; background-size: cover; background-position: center; filter: brightness(0.4); transition: 1s; }
+        .axis-card:hover .axis-bg { transform: scale(1.08); filter: brightness(0.6); }
+        .axis-content { position: relative; z-index: 2; }
+        .axis-card h3 { color: #fff; font-size: 2.22rem; font-weight: 900; margin-top: 10px; }
 
-        .axis-card {
-            height: 600px;
-            border-radius: 12px;
-            position: relative;
-            overflow: hidden;
-            text-decoration: none;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            padding: 60px 40px;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            transition: 0.6s cubic-bezier(0.2, 1, 0.3, 1);
-        }
-
-        .axis-card:hover {
-            transform: translateY(-20px);
-            border-color: var(--accent-orange);
-            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6);
-        }
-
-        .axis-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-            background-size: cover;
-            background-position: center;
-            filter: brightness(0.4) grayscale(0.3);
-            transition: 1s;
-        }
-
-        .axis-card:hover .axis-bg {
-            transform: scale(1.08);
-            filter: brightness(0.6) grayscale(0);
-        }
-
-        .axis-content {
-            position: relative;
-            z-index: 2;
-        }
-
-        .axis-card h3 {
-            color: #ffffff !important;
-            font-size: 2.2rem;
-            font-weight: 900;
-            margin-top: 10px;
-        }
-
-        .axis-card h4 {
-            font-family: 'Outfit';
-            letter-spacing: 0.3em;
-            font-size: 0.8rem;
-            margin-bottom: 5px;
-        }
-
-        /* News Link Styles */
-        .news-item-link {
-            display: flex;
-            align-items: center;
-            padding: 30px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            text-decoration: none;
-            color: #fff;
-            transition: 0.3s;
-        }
-
-        .news-item-link:hover {
-            background: rgba(255, 255, 255, 0.02);
-        }
-
-        .news-item-link:hover .news-title {
-            color: var(--accent-orange);
-            text-decoration: underline;
-            text-underline-offset: 8px;
-        }
-
-        .news-date {
-            width: 140px;
-            color: var(--accent-orange);
-            font-family: 'Outfit';
-            font-weight: 700;
-            margin-right: 20px;
-        }
-
-        .news-title {
-            flex: 1;
-            font-weight: 300;
-            transition: 0.3s;
-        }
-
-        .news-arrow {
-            opacity: 0;
-            transform: translateX(-10px);
-            transition: 0.3s;
-            color: var(--accent-orange);
-        }
-
-        .news-item-link:hover .news-arrow {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        .btn-all-news {
-            display: inline-block;
-            margin-top: 40px;
-            padding: 15px 40px;
-            border: 1px solid #333;
-            border-radius: 30px;
-            color: #fff;
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: 0.3s;
-            font-weight: 700;
-        }
-
-        .btn-all-news:hover {
-            border-color: var(--accent-orange);
-            color: var(--accent-orange);
-        }
-
-        /* Background Typography */
-        .bg-typography {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            opacity: 0.05;
-            pointer-events: none;
-            z-index: 1;
-            overflow: hidden;
-        }
-
-        .bg-typography-text {
-            font-size: 35vw;
-            font-weight: 900;
-            color: #fff;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-family: 'Outfit';
-            line-height: 1;
+        @media (max-width: 768px) {
+            /* スマホで絶対に重ならないよう極小サイズに設定 */
+            .large-title { font-size: 1.5rem !important; line-height: 1.2 !important; }
+            .split-axis-grid { grid-template-columns: 1fr; gap: 20px; }
+            .axis-card { height: 400px; padding: 30px; }
+            .axis-card h3 { font-size: 1.5rem; }
         }
     </style>
 </head>
-
 <body>
-    <div id="loader">
-        <div class="loader-text"></div>
-    </div>
+    <!-- N I G R A の文字が赤くなれば最新版が反映されています -->
+    <div id="loader"><div class="loader-text test-red">NIGRA</div></div>
 
     <header class="header">
         <div class="container">
-            <a href="index.html" class="logo">
-                <img src="assets/images/logo-nigra.png" alt="NIGRA Inc." class="logo-img">
-            </a>
-            <nav class="nav">
-                <a href="index.html" class="nav-link active">HOME</a>
-                <a href="academy.html" class="nav-link">Academy</a>
-                <a href="sportslink.html" class="nav-link">SportsLink</a>
-                <a href="company.html" class="nav-link">Company</a>
-                <a href="contact.html" class="nav-link">Contact</a>
+            <a href="https://www.nigura.site/" class="logo"><img src="assets/images/logo-nigra.png" alt="NIGRA"></a>
+            <button class="menu-toggle" id="menu-toggle"><span></span><span></span><span></span></button>
+            <nav class="nav" id="nav">
+                <a href="https://www.nigura.site/" class="nav-link active">HOME</a>
+                <a href="https://www.nigura.site/academy" class="nav-link">Academy</a>
+                <a href="https://www.nigura.site/sportslink" class="nav-link">SportsLink</a>
+                <a href="https://www.nigura.site/company" class="nav-link">Company</a>
+                <a href="https://www.nigura.site/contact" class="nav-link">Contact</a>
             </nav>
         </div>
     </header>
 
     <main>
-        <!-- Hero Section -->
-        <section class="section"
-            style="height: 100vh; display: flex; align-items: center; justify-content: center; background: radial-gradient(circle at center, #0a1222 0%, #080808 100%); position: relative; overflow: hidden;">
-            <div class="container" style="text-align: center; position: relative; z-index: 10;">
-                <h1 class="large-title reveal" style="font-size: clamp(3rem, 9vw, 8rem);">重力を、<br><span
-                        style="color: var(--accent-orange);">振り切れ。</span></h1>
-            </div>
-            <!-- Background TYPOGRAPHY Fixed -->
-            <div class="bg-typography">
-                <div class="bg-typography-text">NIGRA</div>
+        <section class="section" style="height: 100vh; display: flex; align-items: center; justify-content: center; background: radial-gradient(circle at center, #0a1222 0%, #080808 100%);">
+            <div class="container" style="text-align: center;">
+                <h1 class="large-title reveal">可能性を、<br><span class="accent-glow">加速させる。</span></h1>
             </div>
         </section>
-
-        <!-- News Section (CMS Integration) -->
+        
         <section class="section" style="background: #050505;">
             <div class="container">
-                <span class="section-label reveal">NEWS & UPDATES</span>
-                <h2 class="large-title reveal" style="font-size: 3rem;">最新情報</h2>
-                <div class="news-list" id="home-news-list">
-                    <!-- Loaded from script.js (localStorage) -->
-                    <p style="color: #444; padding: 20px 0;">お知らせを読み込んでいます...</p>
-                </div>
-                <div style="text-align:center;">
-                    <a href="news-list.html" class="btn-all-news reveal">すべてのお知らせを見る</a>
+                <span class="section-label reveal">LATEST NEWS</span>
+                <div class="news-list" id="home-news-list"></div>
+                <div style="text-align:center; margin-top: 40px;">
+                    <a href="https://www.nigura.site/news-list" class="btn-primary-glow reveal">すべて見る</a>
                 </div>
             </div>
         </section>
 
-        <!-- Axis Section -->
         <section class="section">
             <div class="container">
-                <div style="text-align: center; margin-bottom: 60px;">
-                    <span class="section-label reveal">TWO CORE AXES</span>
-                    <h2 class="reveal" style="font-size: 3rem; font-weight: 900;">可能性を広げる、二本の柱。</h2>
-                </div>
                 <div class="split-axis-grid">
-                    <a href="academy.html" class="axis-card reveal">
-                        <div class="axis-bg"
-                            style="background-image: url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=800');">
-                        </div>
+                    <a href="https://www.nigura.site/academy" class="axis-card reveal">
+                        <div class="axis-bg" style="background-image: url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=800');"></div>
                         <div class="axis-content">
-                            <h4 style="color: var(--accent-orange);">EDUCATIONAL SUPPORT</h4>
+                            <h4 style="color: var(--accent-orange);">EDUCATIONAL STRATEGY</h4>
                             <h3>NIGRA Academy</h3>
-                            <p style="color: #aaa; margin-top: 15px;">久留米・うきは密着の内申点対策を、ご自宅で。</p>
                         </div>
                     </a>
-                    <a href="sportslink.html" class="axis-card reveal">
-                        <div class="axis-bg"
-                            style="background-image: url('https://images.unsplash.com/photo-1461896756913-6d7398179f16?auto=format&fit=crop&q=80&w=800');">
-                        </div>
+                    <a href="https://www.nigura.site/sportslink" class="axis-card reveal">
+                        <div class="axis-bg" style="background-image: url('https://images.unsplash.com/photo-1461896756913-6d7398179f16?auto=format&fit=crop&q=80&w=800');"></div>
                         <div class="axis-content">
-                            <h4 style="color: var(--accent-blue);">STUDENT CO-CREATION</h4>
+                            <h4 style="color: var(--accent-blue);">ATHLETE NETWORK</h4>
                             <h3>SportsLink</h3>
-                            <p style="color: #aaa; margin-top: 15px;">学生の挑戦と、企業の未来を繋ぐ。</p>
                         </div>
                     </a>
                 </div>
@@ -251,14 +86,9 @@
     </main>
 
     <footer class="footer">
-        <div class="container">
-            <div style="display: flex; justify-content: space-between; align-items: start;">
-                <div>
-                    <img src="assets/images/logo-nigra.png" alt="NIGRA" style="height: 35px; margin-bottom: 20px;">
-                    <p style="color:#666; font-size:0.9rem;">福岡県久留米市東町25-25<br>代表取締役 山本 陽平</p>
-                </div>
-                <p style="color: #444; font-size: 0.8rem;">&copy; 2026 NIGRA Inc. All Rights Reserved.</p>
-            </div>
+        <div class="container" style="display: flex; justify-content: space-between; align-items: start;">
+            <div><img src="assets/images/logo-nigra.png" alt="NIGRA" style="height: 35px; margin-bottom: 20px;"></div>
+            <p style="color: #444; font-size: 0.8rem;">&copy; 2026 NIGRA Inc.</p>
         </div>
     </footer>
 
@@ -267,5 +97,4 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
     <script src="assets/script.js"></script>
 </body>
-
 </html>
